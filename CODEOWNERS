@@ -1,0 +1,8 @@
+# Code Owners for Claude Skills Repository
+# These owners will be automatically requested for review when PRs are opened
+
+# Global owner for all skills
+* @julien731
+
+# Specific skills can have additional owners as needed
+# Example: /skill-name/ @julien731 @other-maintainer
