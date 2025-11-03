@@ -1,5 +1,11 @@
-# Generated skill packages
-*.skill
+# Draft/experimental skills (work-in-progress)
+# Use these prefixes for skills you're developing locally
+*-draft/
+*-wip/
+*-experimental/
+draft-*/
+wip-*/
+experimental-*/
 
 # macOS
 .DS_Store
