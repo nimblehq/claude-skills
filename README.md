@@ -311,11 +311,35 @@ git push
 
 **Covers:**
 - Feature stories with templates and acceptance criteria
-- Bug reports with structured documentation  
+- Bug reports with structured documentation
 - Chores for technical work
 - Backlog organization (modules, features, labels)
 
-**Documentation:** [Nimble Compass](https://nimblehq.co/compass/product/backlog-management/)
+**Documentation:** [Nimble Compass - Backlog Management](https://nimblehq.co/compass/product/backlog-management/)
+
+---
+
+### nimble-create-prd
+**Purpose:** Creating Product Requirements Documents (PRDs) following Nimble's standard
+
+**Covers:**
+- PRD structure with all required sections (Overview, Context, Solution, Scope, Requirements)
+- AI-friendly formatting with requirement IDs and structured tables
+- Functional and non-functional requirements
+- User flows with Mermaid diagrams
+- Edge cases, roles, permissions, and dependencies
+- Best practices for clarity and completeness
+
+**When to use:**
+- Creating new PRDs for features or products
+- Defining requirements for multi-team or complex features
+- Planning features that need AI-assisted backlog creation
+
+**Documentation:**
+- [PRD Standard](https://nimblehq.co/compass/product/technical-documentation/product-requirements-document/)
+- [PRD Example](https://nimblehq.co/compass/product/technical-documentation/product-requirements-document-example/)
+
+---
 
 *Additional skills will be listed here as they are added to the repository.*
 
