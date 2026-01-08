@@ -341,6 +341,40 @@ git push
 
 ---
 
+### linear-product-requirements
+**Purpose:** Creating product requirements using Linear's native structure
+
+**Covers:**
+- Initiatives (strategic themes grouping related projects)
+- Projects (features being built, with TL;DR, scope, decisions)
+- Milestones (delivery phases or focus areas)
+- Project Documents (detailed specs with business rules, data requirements, edge cases)
+- Issues (user stories with full "As a [role], I can [action] so that [benefit]" format)
+
+**Key features:**
+- Works at any level (Initiative → Project → Milestone → Document → Issue)
+- Explores codebase before writing requirements to inform technical considerations
+- Creates directly in Linear via MCP where available
+- Clear PM/Engineering ownership boundaries (WHAT vs HOW)
+- Naming conventions and anti-patterns
+
+**When to use:**
+- Setting up a new feature in Linear
+- Writing PRDs, specs, or user stories for Linear
+- Creating issues from existing specs
+- Adding milestones or initiatives
+
+**Linear MCP support:**
+| Level | MCP Available |
+|-------|---------------|
+| Initiative | ❌ Manual |
+| Project | ✅ `create_project` |
+| Milestone | ❌ Manual |
+| Document | ✅ `create_document` |
+| Issue | ✅ `create_issue` |
+
+---
+
 *Additional skills will be listed here as they are added to the repository.*
 
 ## Support
