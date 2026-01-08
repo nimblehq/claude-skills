@@ -2,6 +2,10 @@
 
 ## Initiative
 
+**Where in Linear:** Initiatives → New Initiative → Overview
+
+**Length:** 3-5 lines
+
 **Short Summary** (separate field in Linear):
 ```
 [One line description for list view]
@@ -23,6 +27,10 @@
 ---
 
 ## Project Overview
+
+**Where in Linear:** Project → Overview tab → Description field
+
+**Length:** ~15 lines (EL reviews only this)
 
 **Short Summary** (separate field in Linear):
 ```
@@ -61,25 +69,26 @@
 
 ---
 
-## Milestone
+## Project Milestones
 
-Milestones are just names. Common patterns:
+**Where in Linear:** Project → Milestones
 
-**By actor:**
-- Admin Management
-- Customer Actions
-- Integration
+**Naming:** Short, clear phase names
 
-**By release phase:**
-- Internal
-- Beta
-- GA
+Common patterns:
+- By capability: `Admin Management`, `Customer Actions`, `Reporting`
+- By release: `Internal`, `Beta`, `GA`, `Post-launch`
+- By priority: `Core`, `Enhanced`, `Nice-to-have`
 
 ---
 
 ## Project Document (Spec)
 
-**Title:** `Spec: [Milestone Name]`
+**Where in Linear:** Project → Documents → New Document
+
+**Naming:** `Spec: [Milestone Name]`
+
+**Length:** As detailed as needed (Engineering reference)
 
 ```markdown
 # Spec: [Milestone Name]
@@ -92,9 +101,9 @@ Milestones are just names. Common patterns:
 
 | ID | Story | Priority |
 |----|-------|----------|
-| US-001 | [Role] can [action] [what] | Must-have |
-| US-002 | [Role] can [action] [what] | Must-have |
-| US-003 | [Role] can [action] [what] | Should-have |
+| US-001 | [User] can [action] [what] | Must-have |
+| US-002 | [User] can [action] [what] | Must-have |
+| US-003 | [User] can [action] [what] | Should-have |
 
 ## Business Rules
 
@@ -105,11 +114,15 @@ Milestones are just names. Common patterns:
 
 ## Data Requirements
 
+> What data must be captured. Schema design is engineering's decision.
+
 | Data Element | Required | Format | Notes |
 |--------------|----------|--------|-------|
 | [Element] | Yes/No | [Type] | [Constraints] |
 
 ### Entity Relationships (Conceptual)
+
+> Concepts only, not database tables.
 
 ```
 [Entity A] ──has many──▶ [Entity B]
@@ -133,9 +146,13 @@ Milestones are just names. Common patterns:
 
 ## Issue (User Story)
 
+**Where in Linear:** Created from Project Document specs
+
+**Format:** Follow Nimble user story standards
+
 **Title:** Full user story (this IS the title, not a summary)
 ```
-As a [role], I can [action] so that [benefit]
+As a [Who], [When], I [can/must] [action verb] [What] so that [Why]
 ```
 
 **Description:**
@@ -148,7 +165,7 @@ As a [role], I can [action] so that [benefit]
 
 ## Technical Considerations
 
-(Optional) [Implementation guidance or constraints from codebase exploration]
+(Optional) [Implementation guidance or constraints]
 
 ## Design
 
@@ -158,3 +175,5 @@ As a [role], I can [action] so that [benefit]
 
 (Optional) [API docs, references]
 ```
+
+> For complete user story guidance, refer to the Nimble user stories skill and documentation at https://nimblehq.co/compass/product/backlog-management/user-stories/
