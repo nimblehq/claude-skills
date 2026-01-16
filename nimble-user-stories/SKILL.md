@@ -5,21 +5,9 @@ description: Comprehensive guidance for writing user stories following Nimble's 
 
 # Nimble User Stories
 
-Comprehensive guidance for writing user stories following Nimble's standardized backlog management process.
-
-## Overview
-
-This skill provides the complete Nimble methodology for:
-- **Backlog organization**: Modules, features, versioning, and labels
-- **Feature stories**: User-focused stories that deliver business value
-- **Bug reports**: Structured bug documentation with clear reproduction steps
-- **Chores**: Non-feature work like refactoring, setup, and research
-
-All documentation is fetched from live sources to ensure accuracy.
-
 ## Process Workflow
 
-When writing user stories, follow this sequence:
+Follow this sequence when writing user stories:
 
 1. **Fetch latest documentation** - Always start by fetching the relevant documentation URL(s) to get current standards
 2. **Identify story type** - Determine if this is a feature, bug, or chore
@@ -211,13 +199,3 @@ Fetch the documentation for complete details on modules, features, workflow stat
 6. Break down into user stories following the template
 7. Apply appropriate labels (`$feature-name`, `@version`, etc.)
 8. Validate against best practices
-
-## Resources
-
-This skill maintains minimal bundled resources since all documentation is fetched live from Nimble's compass:
-
-- **Scripts** (`scripts/`): Not currently used - all templates are in live docs
-- **References** (`references/`): Not currently used - fetch live documentation
-- **Assets** (`assets/`): Not currently used - templates in live docs
-
-**Note**: The decision to fetch live documentation rather than bundle it ensures this skill always reflects Nimble's current standards without requiring skill updates.
