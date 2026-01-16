@@ -5,24 +5,9 @@ description: Guide for creating Product Requirements Documents (PRDs) following 
 
 # Nimble PRD Creation
 
-This skill provides comprehensive guidance for creating Product Requirements Documents (PRDs) according to Nimble's standard, optimized for clarity, action, and AI augmentation.
-
-## When to Use This Skill
-
-Use this skill when:
-- Creating a new PRD for a feature or product
-- Defining functional and non-functional requirements
-- Documenting user flows and technical approaches
-- Planning features that involve multiple teams or systems
-- Creating specs that will feed into AI-assisted backlog creation
-
-**When NOT to write a PRD:**
-- Small, isolated changes - write stories directly instead
-- Features with minimal ambiguity that don't need extensive documentation
-
 ## Documentation Source
 
-This skill references Nimble's Compass documentation. Always fetch the latest from:
+Reference Nimble's Compass documentation. Fetch the latest from:
 - **PRD Standard**: https://nimblehq.co/compass/product/technical-documentation/product-requirements-document/
 - **PRD Example**: https://nimblehq.co/compass/product/technical-documentation/product-requirements-document-example/
 
@@ -36,7 +21,7 @@ This skill references Nimble's Compass documentation. Always fetch the latest fr
 
 ## PRD Structure
 
-Every PRD must follow this structure:
+Follow this structure for every PRD:
 
 ### 1. Overview
 
