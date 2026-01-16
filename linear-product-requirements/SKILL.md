@@ -7,7 +7,7 @@ description: Create product requirements using Linear's native structure. Use wh
 
 All product requirements live in Linear. No external docs needed.
 
-## Overview
+## Linear Hierarchy
 
 | Linear Level | Content | Who Writes | Who Reviews |
 |--------------|---------|------------|-------------|
