@@ -13,11 +13,12 @@ Reference Nimble's Compass documentation. Fetch the latest from:
 
 ## Core Principles
 
-1. **Outcome Over Process**: State what success looks like, not how to do the work
+1. **Stakeholder Lens**: Every section must answer "does a stakeholder need this?" Dev-level details belong in dev docs, not the PRD.
 2. **Context First, Details Second**: Lead with the problem and why it matters
 3. **Structured for Parsing**: Use consistent sections and explicit logic that both AI and humans can understand
 4. **Minimal but Complete**: Include everything needed to build, exclude everything else
 5. **Decisions, Not Debates**: Document what we're doing and why
+6. **No Empty Sections**: If a section has no real content for this PRD, remove it entirely. Don't force-fill sections to match the template.
 
 ## PRD Structure
 
@@ -54,12 +55,16 @@ Follow this structure for every PRD:
 - Who is affected and how
 - Use real scenarios, not hypotheticals
 
-**Constraints**
-- Technical, timeline, resource, or business limitations
+**Constraints** (include only if real constraints exist)
+- Only TRUE constraints: things imposed from outside that limit the solution
+- Sprint timelines, team capacity, and other feature deadlines are sprint planning, NOT PRD constraints
+- If already covered in another section, don't repeat. If no real constraints, omit this section.
 
-**Assumptions**
-- What we're assuming to be true
-- Call these out explicitly - if they're wrong, the plan changes
+**Assumptions** (include only if real assumptions exist)
+- Things believed true but not verified. If wrong, the plan changes.
+- Expected outcomes are REQUIREMENTS, not assumptions
+- Dev details and strategy justifications are NOT assumptions
+- If no real assumptions, omit this section.
 
 ### 3. Proposed Solution
 
@@ -74,7 +79,8 @@ Follow this structure for every PRD:
 **User Flow** (if applicable)
 - Step-by-step description of user interaction
 - Plain language for simple flows
-- **MUST use Mermaid diagrams for complex flows with branching logic** (ensures AI readability)
+- **MUST use Mermaid diagrams for complex UX/user flows with branching logic** (ensures AI readability)
+- Mermaid is for user flows only. Don't use for internal process flows (sprint phases, execution plans).
 
 **Technical Approach** (if relevant)
 - High-level tech decisions: architecture, integrations, data models, APIs
@@ -87,14 +93,27 @@ Follow this structure for every PRD:
 ### 4. Scope
 
 **In Scope**
-- What we're delivering in this release
+- What's being BUILT, not process steps (QA, documentation are standard process)
 - Be explicit
 
-**Out of Scope**
-- What we're NOT doing and why
-- This prevents scope drift
+**Out of Scope** (include only if needed)
+- Only list things a reader might REASONABLY EXPECT to be included but aren't
+- Don't list obviously unrelated things (mobile apps in a web PRD, other features with separate PRDs)
+- If nothing is reasonably confusable, omit this section
 
-### 5. Requirements
+### 5. Business Rules (include only if real domain rules exist)
+
+Table format with columns:
+- **ID**: `BR-[NUMBER]` (e.g., `BR-001`)
+- **Rule**: Domain constraint
+- **Rationale**: Why this rule exists
+
+Business rules are durable domain constraints referenced by feature stories using BR-NNN IDs. Extract rules that apply across multiple requirements.
+- Technical decisions and strategy choices are NOT business rules
+- If already stated in another section, don't duplicate as a BR
+- If no real domain rules exist, omit this section
+
+### 6. Requirements
 
 **Functional Requirements**
 
@@ -125,27 +144,50 @@ Table showing which roles can Create/Read/Update/Delete each entity:
 - Create / Read / Update / Delete permissions
 - Notes about special handling
 
-**Edge Cases**
+**Business Rules**
+
+Table format with columns:
+- **ID**: `BR-[NUMBER]` (e.g., `BR-001`, `BR-002`)
+- **Rule**: The domain constraint — clear, concise, unambiguous
+- **Rationale**: Why this rule exists (business logic, regulatory, data integrity)
+
+Business rules are durable domain constraints that apply across multiple requirements. They are referenced by feature stories using their BR-NNN IDs.
+
+Examples:
+| ID | Rule | Rationale |
+|----|------|-----------|
+| BR-001 | Only one GCash wallet can be linked per user account | GCash API limitation — one binding per merchant-user pair |
+| BR-002 | Linked wallet payment completes without redirect | Tokenized payment via GT API, no GCash re-authentication needed |
+| BR-003 | Wallet linking requires user to be logged in | Binding is tied to authenticated user account in GT system |
+
+**Edge Cases** (include only if genuinely unexpected scenarios exist)
 
 Table format:
 - **Scenario**: What unusual situation might occur
 - **Expected Behavior**: How system should handle it (use action verbs)
 - **Priority**: Must-have / Should-have
 
-### 6. Roles & Permissions (if applicable)
+Known risks and standard failure modes are NOT edge cases. If all items are obvious risks, omit this section.
+
+### 7. Roles & Permissions (if applicable)
 
 Table showing which roles can perform which actions:
 - Action
 - Guest / User / Admin / Other roles
 - Notes about special conditions
 
-### 7. Dependencies
+### 8. Dependencies (include only if real external blockers exist)
 
 Table format:
 - **Dependency**: What's needed
 - **Type**: Technical / External / Infrastructure
 - **Owner**: Who's responsible
 - **Status**: Complete / In Progress / Pending
+
+Dependencies are things that BLOCK this work if not available (external teams, APIs, approvals).
+- Internal docs and reference materials belong in Resources, not Dependencies
+- Standard process (QA availability) is not a dependency
+- If no real blockers, omit this section
 
 ## AI-Friendly Formatting Rules
 
@@ -206,7 +248,15 @@ Be explicit about:
 - What IS in scope for this release
 - What is NOT in scope and why
 
-### Step 6: Write Requirements
+### Step 6: Extract Business Rules
+
+Before writing requirements, identify domain rules that apply across multiple FRs:
+1. Assign unique BR-NNN ID to each rule
+2. State the constraint clearly
+3. Provide rationale (why the rule exists)
+4. These will be referenced by feature stories later
+
+### Step 7: Write Requirements
 
 For each requirement:
 1. Assign unique ID with PRD prefix
@@ -220,13 +270,13 @@ Don't forget:
 - CRUD operations table (if applicable)
 - Edge cases with expected behaviors
 
-### Step 7: Document Roles, Permissions, Dependencies
+### Step 8: Document Roles, Permissions, Dependencies
 
 Complete the PRD with:
 - Roles & Permissions table (if applicable)
 - Dependencies table with owners and status
 
-### Step 8: Quality Check
+### Step 9: Quality Check
 
 Before finalizing, verify:
 - [ ] PRD ID is defined and used consistently in all requirement IDs
@@ -237,6 +287,7 @@ Before finalizing, verify:
 - [ ] UI/UX details include wireframe links and key screens
 - [ ] Scope boundaries are explicit
 - [ ] Priority levels are assigned to all requirements
+- [ ] Business rules extracted with BR-NNN IDs and rationale
 - [ ] Edge cases are documented
 - [ ] Dependencies are listed with owners
 
@@ -279,18 +330,31 @@ Before finalizing, verify:
 - Security consideration documented
 - Priority assigned
 
+## What Does NOT Belong in a PRD
+
+| Content | Where it belongs |
+|---------|-----------------|
+| Sprint timeline, team capacity | Sprint notes |
+| Jira epics, tickets, links | Sprint notes |
+| Execution phases, phased timelines | Sprint notes |
+| Dev-level details (codemods, config renames, breaking changes) | Dev docs (Notion, etc.) |
+| QA process, regression testing | Standard release process |
+| Feature deadlines from other PRDs | Sprint notes |
+| Internal tracking (security history, previous patches) | Internal docs |
+
 ## Common Pitfalls to Avoid
 
 1. **Forgetting PRD ID**: Every PRD must have a unique ID in Overview section
 2. **Inconsistent requirement IDs**: All requirements must use `[PRD-ID]-FR-###` or `[PRD-ID]-NFR-###` format
 3. **Acceptance criteria without verbs**: "Form accepts" → "Accept email in form"
-4. **Using images instead of Mermaid**: AI cannot parse images; always use Mermaid for flows
+4. **Using images instead of Mermaid**: AI cannot parse images; always use Mermaid for UX flows
 5. **Vague success metrics**: "Better performance" → "95% of users complete flow in <2 minutes"
-6. **Missing scope boundaries**: Always document what's out of scope to prevent drift
-7. **Combining multiple requirements**: Keep one requirement per table row
-8. **No user impact**: For FRs, always explain how it benefits users
-9. **Missing edge cases**: Document how system handles unusual scenarios
-10. **No UI/UX details**: Include wireframe links and key screens for frontend work
+6. **Combining multiple requirements**: Keep one requirement per table row
+7. **No user impact**: For FRs, always explain how it benefits users
+8. **Force-filling sections**: Don't add Assumptions, Constraints, Edge Cases, Dependencies, Out of Scope, or Business Rules just to match the template. Only include sections with real content.
+9. **Repeating information**: State info once in the right section. Don't duplicate across Overview, Context, and Proposed Solution.
+10. **Mixing PRD with sprint planning**: Constraints should be about the solution, not the sprint. Strategy should be high-level, not phased day-by-day plans.
+11. **Dev details in AC**: Keep acceptance criteria stakeholder-verifiable. "All tests pass" is fine. "Codemods applied, breaking changes fixed" is dev process.
 
 ## Tips for Success
 
