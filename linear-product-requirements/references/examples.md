@@ -182,6 +182,10 @@ Consent records must be immutable for audit compliance.
 - Returns success with updated record
 - If consent already withdrawn, returns error: "Already withdrawn"
 - If no consent exists, returns not found
+
+## Resources
+
+API: `PATCH Consents Withdraw`. [Consents (Postman)](https://www.postman.com/nimblehq/okya/collection/consents). The captured request and response live as a saved example on the request.
 ```
 
 ### Issue 3
