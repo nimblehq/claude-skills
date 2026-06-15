@@ -59,6 +59,10 @@
 ## Decisions Needed
 
 [Questions requiring EL input, or "None — ready for implementation"]
+
+## Resources
+
+(Optional) Engineering references: existing patterns, related code, links. Engineering to evaluate.
 ```
 
 ---

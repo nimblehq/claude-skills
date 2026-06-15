@@ -57,6 +57,10 @@ Platform is audit-ready for GDPR and PDPA by end of Q1 2026.
 ## Decisions Needed
 
 None — ready for implementation
+
+## Resources
+
+(Optional) Existing multi-tenant and customer-auth patterns to reuse. Engineering to evaluate.
 ```
 
 ---

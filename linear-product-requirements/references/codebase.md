@@ -2,7 +2,7 @@
 
 Before writing requirements, explore the codebase to inform:
 - Data requirements (align with existing patterns)
-- Technical considerations (note relevant code)
+- Resources / engineering references (note relevant patterns)
 - Acceptance criteria (match existing formats)
 - Business rules (understand current logic)
 
@@ -11,7 +11,7 @@ Before writing requirements, explore the codebase to inform:
 | Writing | Find in Codebase |
 |---------|------------------|
 | Data requirements | Models, schemas, migrations |
-| Technical considerations | Architecture, patterns, dependencies |
+| Resources | Existing patterns, concerns, dependencies (engineering to evaluate) |
 | Integration points | Existing APIs, services, auth |
 | Business rules | Validation logic, constants, enums |
 | Edge cases | Error handling patterns |
@@ -120,7 +120,7 @@ Write in spec:
 ```markdown
 ## Resources
 
-- Existing audit-trail pattern: `Auditable` concern (engineering to evaluate)
+- **Reference:** Existing audit-trail pattern: `Auditable` concern (engineering to evaluate)
 ```
 
 ### In Acceptance Criteria
