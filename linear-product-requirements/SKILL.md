@@ -12,7 +12,7 @@ All product requirements live in Linear. No external docs needed.
 | Linear Level | Content | Who Writes | Who Reviews |
 |--------------|---------|------------|-------------|
 | **Initiative** | Strategic context (why, target outcome) | PM | Leadership |
-| **Project Overview** | TL;DR, scope, decisions, constraints | PM | EL approves |
+| **Project Overview** | TL;DR, scope, decisions | PM | EL approves |
 | **Project Milestones** | Delivery phases | PM | Team |
 | **Project Documents** | Detailed specs per milestone | PM | Engineering |
 | **Issues** | User stories | PM | Engineering |
@@ -28,7 +28,7 @@ INITIATIVE: Platform Compliance
 └── PROJECT: Consent Management
     │
     ├── Project Overview (EL reviews this)
-    │   └── TL;DR, Scope, Decisions, Technical Considerations
+    │   └── TL;DR, Scope, Decisions
     │
     ├── Milestones
     │   ├── Admin Management
@@ -145,15 +145,6 @@ Clear ownership keeps collaboration smooth:
 | "POST /api/v1/consents endpoint" | "Customer can grant consent" |
 | "Use JSONB for content field" | "Content must support multiple languages" |
 | "Use FIFO with FOR UPDATE locks" | "Deduct from oldest batches first" |
-
-### When Technical Context Helps
-
-Frame as considerations, not requirements:
-
-| Instead of... | Try... |
-|---------------|--------|
-| "Use double-entry accounting" | "Similar systems use double-entry patterns. Engineering to evaluate." |
-| "Add idempotency_key column" | "API must prevent duplicate transactions. Reference: Stripe idempotency." |
 
 ## Templates
 

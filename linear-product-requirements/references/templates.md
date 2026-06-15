@@ -60,11 +60,9 @@
 
 [Questions requiring EL input, or "None — ready for implementation"]
 
-## Technical Considerations
+## Resources
 
-- **Constraint:** [Must work with X]
-- **Constraint:** [Must support Y]
-- **Question:** [Open question for engineering]
+(Optional) Engineering references: existing patterns, related code, links. Engineering to evaluate.
 ```
 
 ---
@@ -162,10 +160,6 @@ As a [Who], [When], I [can/must] [action verb] [What] so that [Why]
 - [Observable behavior 1]
 - [Observable behavior 2]
 - [Success condition]
-
-## Technical Considerations
-
-(Optional) [Implementation guidance or constraints]
 
 ## Design
 
