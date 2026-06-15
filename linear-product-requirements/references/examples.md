@@ -202,3 +202,37 @@ Consent records must be immutable for audit compliance.
 
 Consider ETag caching for performance on the pending consents check.
 ```
+
+### Issue 4 (Bug)
+
+**Title:** `On the consent settings screen, withdrawing a consent shows it as still active`
+
+**Label:** `Bug`
+
+**Description:**
+```markdown
+## Environment
+- Platform: iOS
+- Device: iPhone 15
+- OS: iOS 17.4
+- Version: 1.4.0 (build 312)
+- Environment: staging
+
+## Prerequisites
+A customer has at least one active consent on a published policy version.
+
+## Steps to Reproduce
+1. Open the consent settings screen.
+2. Withdraw an active consent.
+3. Stay on the screen and pull to refresh.
+
+## Expected Behavior
+The consent shows as withdrawn, with the time it was withdrawn.
+
+## Actual Behavior
+The consent still shows as active until the app is restarted.
+
+## Resources
+- Related: [MER-241](https://linear.app/okya/issue/MER-241)
+- Screen recording: consent-withdraw-stale.mov
+```

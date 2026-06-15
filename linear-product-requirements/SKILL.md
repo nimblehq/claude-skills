@@ -155,6 +155,35 @@ Frame as considerations, not requirements:
 | "Use double-entry accounting" | "Similar systems use double-entry patterns. Engineering to evaluate." |
 | "Add idempotency_key column" | "API must prevent duplicate transactions. Reference: Stripe idempotency." |
 
+## Bug Card Rules
+
+Bug-labeled issues follow the [Nimble Bugs standard](https://nimblehq.co/compass/product/backlog-management/user-stories/bugs/): a plain title plus 5 required sections. We add one optional `## Resources` section on top of that standard. The fill-in template lives in `references/templates.md`.
+
+**Title:** Plain statement of what is broken, NOT a user story. Use "On" for a screen and "In" for a feature or area; pick one, do not write the literal "On/In".
+```
+On/In [screen or context], [what is wrong]
+```
+
+Examples:
+- ✅ `In POS settings, turning off order manager does not disable kitchen ticket printing`
+- ✅ `On the order detail screen, the refund status is not updated after void`
+- ❌ `As a store staff, I can see the correct refund status` (user story format, wrong for bugs)
+
+**Description:** the 5 required sections in this exact order, then the optional `## Resources` and nothing else:
+
+1. `## Environment`
+2. `## Prerequisites`
+3. `## Steps to Reproduce`
+4. `## Expected Behavior`
+5. `## Actual Behavior`
+
+**Strict rules:**
+- The 5 required sections (Environment, Prerequisites, Steps to Reproduce, Expected Behavior, Actual Behavior) appear in this order, even if brief. Use the full heading names, not "Expected" / "Actual".
+- **No** Acceptance Criteria, Edge Cases, Out of Scope, Why, or other sections
+- `## Resources` is the only allowed optional addition. It is our local extension, not part of the Nimble 5-section standard; omit it when there are no links
+- If reproduction steps are unknown, write "Unknown, investigate first" rather than omitting the section
+- Tag the issue with the `Bug` label in Linear
+
 ## Templates
 
 See `references/templates.md` for complete templates.
