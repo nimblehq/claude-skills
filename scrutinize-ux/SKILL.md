@@ -1,6 +1,6 @@
 ---
 name: scrutinize-ux
-description: Outsider-perspective, multi-lens UX/UI review of a design (Figma frame, screen, flow, or mockup). First derives the stakeholder personas that actually fit THIS design from the design itself, then walks the experience through each lens to find where it fails them, leading with big design-concept concerns and ending with copy and visual nits. Output is concise, severity-ordered, and every finding names the lens it hurts and cites the frame. Trigger on /scrutinize-ux and proactively whenever the user asks to review, critique, audit, sanity-check, or get a second opinion on a design, screen, flow, Figma file, prototype, or UI mockup. For code, PRs, and plans, use a code review skill instead.
+description: Outsider-perspective, multi-lens UX/UI review of a design (Figma frame, screen, flow, or mockup) that derives its stakeholder lenses from the design itself and leads with mental-model concerns over copy nits. Trigger on /scrutinize-ux and proactively whenever the user asks to review, critique, audit, sanity-check, or get a second opinion on a design, screen, flow, Figma file, prototype, or UI mockup. For code, PRs, and plans, use a code review skill instead.
 ---
 
 # Scrutinize UX
