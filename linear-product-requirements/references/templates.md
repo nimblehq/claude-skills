@@ -157,23 +157,25 @@ As a [Who], [When], I [can/must] [action verb] [What] so that [Why]
 
 **Description:**
 ```markdown
+## Why
+
+[1-2 sentences: the benefit and reason. All reasons live here, never in the title. A real-world ASCII scenario may go here when it helps the reader picture the situation.]
+
 ## Acceptance Criteria
 
-- [Observable behavior 1]
-- [Observable behavior 2]
-- [Success condition]
+- [Expected outcome 1: what the user or business observes, never how it is built]
+- [Expected outcome 2]
+- [Success or failure condition the user would notice]
+
+[A Mermaid user flow or user-side sequence may go here, only when the flow or ordering is the hard part.]
 
 ## Technical Considerations
 
 (Optional) [Implementation guidance or constraints]
 
-## Design
-
-(Optional) [Figma links]
-
 ## Resources
 
-(Optional) [API docs, references]
+(Optional) API docs and references; link the Figma design (the actual frame) here when one exists.
 ```
 
 > For complete user story guidance, refer to the Nimble user stories skill and documentation at https://nimblehq.co/compass/product/backlog-management/user-stories/

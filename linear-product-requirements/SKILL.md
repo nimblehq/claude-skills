@@ -116,6 +116,30 @@ As a [role], I can [action] so that [benefit]
 - ❌ `As a client app, I can check pending consents...`
 - ✅ `As a customer, when I have pending consents, I am prompted to review them...`
 
+**Acceptance criteria are expected outcomes only.** Each AC states what the user or business can observe, never how it is built, and never limits how the developer solves it. Keep implementation words out of AC wording (common tells: endpoint, API, token, scope, schema, job, service, query, column). The wordlist is only a hint; the litmus test below is the real rule. The benefit and reasons live in `## Why`.
+
+**Anti-patterns (AC), outcome not mechanism:**
+- ❌ `The rewards index returns only rewards in the customer token's scope`
+- ✅ `A customer sees only the rewards they are eligible for`
+- ❌ `Add a maximum-discount column and clamp it in the calculator`
+- ✅ `The discount never exceeds the configured maximum`
+
+**State the use case, not the architecture.** An AC says what the user needs to do or see; it never assumes how data is fetched, joined, or split across services. The engineer owns that and may satisfy one use case with several APIs.
+- Use case: while browsing rewards, a customer wants to know which ones they can afford.
+- ❌ Bakes in architecture: `Each reward returns how many more points the customer needs` (forces the reward feed to also carry the customer's balance: one combined endpoint)
+- ✅ States the use case: `A customer can tell which rewards they can afford` (the engineer may serve rewards and the balance as two separate APIs and let the client compare them)
+
+**Litmus test:** if an AC names which response must carry which data, it has already chosen the architecture; rewrite it. If it names only what the user can do or see, the architecture is still open.
+
+Data the system must capture (timestamp, IP, and similar) is a PM-owned data requirement: state it in the spec's Data Requirements or in `## Why`, not as an AC describing how a response carries it.
+
+**Visuals: add one only where it makes the issue easier to understand, never just to fill a slot.** Less is more: if the words already make it clear, add nothing. When a visual helps, put it where it does the most good, and you may use more than one across the description:
+- in `## Why`: a real-world scenario in ASCII (a before/after of values, or a worked example), to ground the reader in the actual situation
+- in `## Acceptance Criteria`: a Mermaid diagram (a user flow or a user-side sequence), when the flow or ordering is the hard part
+- in `## Resources`: the Figma design, linked to the actual frame
+
+Use none, one, or several. Each must earn its place by helping the developer understand the issue; drop anything that does not.
+
 ## Technical Ownership
 
 Clear ownership keeps collaboration smooth:

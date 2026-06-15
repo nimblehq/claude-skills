@@ -81,7 +81,7 @@ None — ready for implementation
 
 **Title:** `Spec: Customer Actions`
 
-```markdown
+````markdown
 # Spec: Customer Actions
 
 ## Overview
@@ -141,64 +141,95 @@ Consent Version ──receives many──▶ Customer Consent Records
 
 1. Should we implement ETag caching for pending consents endpoint?
 2. How to handle race conditions if version archived mid-flow?
-```
+````
 
 ---
 
 ## Issues
+
+> Each Issue Description below is wrapped in a 4-backtick fence so the nested visuals (ASCII, Mermaid) render. Across the three, the visuals demonstrate each placement: ASCII in Why (Issue 1), Mermaid in Acceptance Criteria (Issue 3), Figma in Resources (Issue 1). Issue 2 shows the "no visual" case.
 
 ### Issue 1
 
 **Title:** `As a customer, I can grant consent to a published policy version so that I can use platform features`
 
 **Description:**
-```markdown
+````markdown
+## Why
+
+A customer must consent to the current policy before using features that depend on it. Capturing each consent cleanly keeps us audit-ready.
+
+```
+Before: customer blocked, nothing on record
+After:  consent to v3 recorded, with the time, device, and network
+```
+
 ## Acceptance Criteria
 
-- Creates consent record with consented_at timestamp
-- Captures IP address from request headers
-- Captures user agent from request headers
-- Accepts collection_method in request body
-- Returns success with created record
-- If consent already exists for version, returns existing record (no duplicate)
-- If version is archived, returns error: "Version no longer active"
-- If version is draft, returns not found
+- A customer can grant consent to a published policy version
+- Each consent is recorded with enough detail to audit it later: when it was given, and the device and network it came from where available
+- The customer can indicate how the consent was collected (signup, login prompt, settings, cookie banner)
+- Granting consent to the same version twice does not create a duplicate; the existing consent stands
+- Consent cannot be given to an archived version; the customer is told it is no longer active
+- A draft version is not available to consent to
 
 ## Technical Considerations
 
 Consent records must be immutable for audit compliance.
-```
+
+## Resources
+
+(Optional) Figma frame: [Consent prompt](https://www.figma.com/design/AbC123/Consent?node-id=10-20)
+````
 
 ### Issue 2
 
 **Title:** `As a customer, I can withdraw my consent so that my data is no longer processed under that policy`
 
 **Description:**
-```markdown
+````markdown
+## Why
+
+A customer can change their mind. Withdrawal must be honoured and provable later, so the record is kept rather than deleted.
+
 ## Acceptance Criteria
 
-- Sets withdrawn_at timestamp on consent record
-- Does not delete the record (audit trail)
-- Returns success with updated record
-- If consent already withdrawn, returns error: "Already withdrawn"
-- If no consent exists, returns not found
-```
+- A customer can withdraw a consent they previously gave
+- The withdrawal is recorded with the time it happened; the original consent is never deleted (audit trail)
+- Withdrawing an already-withdrawn consent tells the customer it is already withdrawn
+- Withdrawing when no consent exists is reported as not found
+````
 
 ### Issue 3
 
 **Title:** `As a customer, when I have pending consents, I am prompted to review them so that I can continue using platform features`
 
 **Description:**
-```markdown
+````markdown
+## Why
+
+When a new policy version is published, customers need a clear nudge to act, without being nagged when nothing is pending.
+
 ## Acceptance Criteria
 
-- Customer is shown pending consents that require action
-- Pending = published version exists that customer hasn't consented to
-- Includes consents withdrawn customers need to re-consent to
-- If no pending consents, customer proceeds without prompt
-- Prompt appears at appropriate moments (e.g., login, accessing restricted features)
+- A customer is shown the consents that still need their action
+- A consent needs action when a published version exists that the customer has not consented to, including versions they previously withdrew from
+- When nothing is pending, the customer continues without a prompt
+- The prompt appears at natural moments, such as login or accessing a restricted feature
+
+```mermaid
+sequenceDiagram
+    actor Customer
+    Customer->>Platform: Opens app or accesses a restricted feature
+    Platform->>Platform: Check for pending consents
+    alt Has pending consents
+        Platform-->>Customer: Prompt to review the pending consents
+    else None pending
+        Platform-->>Customer: Continue without a prompt
+    end
+```
 
 ## Technical Considerations
 
 Consider ETag caching for performance on the pending consents check.
-```
+````
