@@ -152,7 +152,7 @@ Common patterns:
 
 **Title:** Full user story (this IS the title, not a summary)
 ```
-As a [Who], [When], I [can/must] [action verb] [What] so that [Why]
+As a [Who], [When], I [can/must] [action verb] [What]
 ```
 
 **Description:**

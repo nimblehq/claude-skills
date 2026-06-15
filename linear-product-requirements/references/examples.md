@@ -149,7 +149,7 @@ Consent Version ──receives many──▶ Customer Consent Records
 
 ### Issue 1
 
-**Title:** `As a customer, I can grant consent to a published policy version so that I can use platform features`
+**Title:** `As a customer, I can grant consent to a published policy version`
 
 **Description:**
 ```markdown
@@ -171,7 +171,7 @@ Consent records must be immutable for audit compliance.
 
 ### Issue 2
 
-**Title:** `As a customer, I can withdraw my consent so that my data is no longer processed under that policy`
+**Title:** `As a customer, I can withdraw my consent`
 
 **Description:**
 ```markdown
@@ -186,7 +186,7 @@ Consent records must be immutable for audit compliance.
 
 ### Issue 3
 
-**Title:** `As a customer, when I have pending consents, I am prompted to review them so that I can continue using platform features`
+**Title:** `As a customer, when I have pending consents, I am prompted to review them`
 
 **Description:**
 ```markdown
