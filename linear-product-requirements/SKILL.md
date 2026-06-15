@@ -28,7 +28,7 @@ INITIATIVE: Platform Compliance
 └── PROJECT: Consent Management
     │
     ├── Project Overview (EL reviews this)
-    │   └── TL;DR, Scope, Decisions, Technical Considerations
+    │   └── TL;DR, Scope, Decisions
     │
     ├── Milestones
     │   ├── Admin Management

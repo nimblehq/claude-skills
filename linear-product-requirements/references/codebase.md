@@ -106,7 +106,7 @@ Write in spec:
 | Customer identifier | Yes | Reference | Link to existing customer (belongs_to :brand) |
 ```
 
-### In Technical Considerations
+### In Resources
 
 Found in codebase:
 ```ruby
@@ -118,9 +118,9 @@ end
 
 Write in spec:
 ```markdown
-## Technical Considerations
+## Resources
 
-- **Pattern:** Consider using existing `Auditable` concern for audit trail
+- Existing audit-trail pattern: `Auditable` concern (engineering to evaluate)
 ```
 
 ### In Acceptance Criteria

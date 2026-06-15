@@ -57,14 +57,6 @@ Platform is audit-ready for GDPR and PDPA by end of Q1 2026.
 ## Decisions Needed
 
 None — ready for implementation
-
-## Technical Considerations
-
-- **Constraint:** Must integrate with existing multi-tenant architecture
-- **Constraint:** Must integrate with existing customer authentication
-- **Compliance:** Consent records must be immutable (no hard deletes)
-- **Compliance:** Must capture: timestamp, IP, user agent, collection method, policy version
-- **Question:** Should pending consent checks support ETag caching?
 ```
 
 ---
@@ -163,10 +155,6 @@ Consent Version ──receives many──▶ Customer Consent Records
 - If consent already exists for version, returns existing record (no duplicate)
 - If version is archived, returns error: "Version no longer active"
 - If version is draft, returns not found
-
-## Technical Considerations
-
-Consent records must be immutable for audit compliance.
 ```
 
 ### Issue 2
@@ -197,8 +185,4 @@ Consent records must be immutable for audit compliance.
 - Includes consents withdrawn customers need to re-consent to
 - If no pending consents, customer proceeds without prompt
 - Prompt appears at appropriate moments (e.g., login, accessing restricted features)
-
-## Technical Considerations
-
-Consider ETag caching for performance on the pending consents check.
 ```
