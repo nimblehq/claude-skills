@@ -177,3 +177,42 @@ As a [Who], [When], I [can/must] [action verb] [What] so that [Why]
 ```
 
 > For complete user story guidance, refer to the Nimble user stories skill and documentation at https://nimblehq.co/compass/product/backlog-management/user-stories/
+
+---
+
+## Issue (Bug Card)
+
+**Where in Linear:** Tag the issue with the `Bug` label.
+
+**Title:** Plain statement of what is broken, not a user story.
+```
+On/In [screen or context], [what is wrong]
+```
+
+**Description:** the 5 required sections in this order, then the optional `## Resources` (a local addition, not part of the Nimble standard) and nothing else.
+```markdown
+## Environment
+- Platform: iOS / Android / Web
+- Device: e.g., iPad, iPhone
+- OS: e.g., iOS 17
+- Version: e.g., 1.2.0 (build 210)
+- Environment: staging / production
+
+## Prerequisites
+[Conditions needed before reproducing]
+
+## Steps to Reproduce
+1. Step one
+2. Step two
+
+## Expected Behavior
+[What should happen, include screenshots if possible]
+
+## Actual Behavior
+[What actually happens, add screenshots or screencasts]
+
+## Resources
+(Optional) [Related issues, design files, logs. Omit if none.]
+```
+
+> Source of truth: [Nimble Bugs standard](https://nimblehq.co/compass/product/backlog-management/user-stories/bugs/). No Acceptance Criteria, Why, or other sections on a bug card.
