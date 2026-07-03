@@ -1,6 +1,20 @@
 # Filtering & consolidation rules
 
-Two passes: a cheap tag pass, then a semantic pass. The semantic pass is where the value is — do not skip it.
+Three passes: fetch every PR's content, a cheap tag pass, then a semantic pass. The fetch and semantic passes are where the value is — do not skip them.
+
+## Pass 0 — Fetch every PR (source of truth)
+
+Titles are unreliable in both directions — they hide reverts and under-describe what shipped. So before filtering, retrieve each PR's content through the **GitHub MCP tools** or the **`gh` CLI** (never a browser — see SKILL.md → "Source access").
+
+For each PR number in the changelog, capture:
+
+- **title, body, state** (merged vs closed-unmerged — a closed-unmerged PR did not ship)
+- **labels** (corroborate/override the changelog tag)
+- **changed files** — the strongest signal for the internal-scaffolding test (all under `db/migrate`, `app/models`, `app/policies`, specs → plumbing; templates/views/components/forms → user-facing surface)
+- **revert signals** in the body: "Reverts #NNNN", "This reverts commit …", "revert of #NNNN", or a linked reverting/reverted PR
+- **backreferences** — a clean-looking feature PR may be reverted by a *later* PR that it never mentions. For each feature PR `#N`, also run `gh search prs "Reverts #N"` (see the revert cascade below); reading `#N` alone will not reveal it
+
+`gh pr view <N> --json title,body,state,labels,files` (add `gh pr diff <N>` when the file list is ambiguous), or the MCP equivalent (`pull_request_read` / `get_pull_request` + files). Fetch each PR once and cache; batch for large releases. This pass is what makes the revert cascade and the detail level reliable — it is the reason the process takes longer, and it is not optional.
 
 ## Pass 1 — Tag filter (coarse)
 
@@ -34,7 +48,32 @@ These are ingredients, not dishes. They may still *belong* to a shipped capabili
 
 ### Revert cascade
 
-Scan Chores/Others for `Revert #NNNN` (e.g. `Revert #2605: calculator-driven price override…`). Remove **both** the revert chore **and** the original PR it targets. That feature did not ship.
+Use the Pass 0 fetch, not just the changelog text. Reverts hide in four places:
+
+1. **Titled reverts** in Chores/Others — `Revert #2605: calculator-driven price override…`.
+2. **Body reverts** — a PR whose fetched body says "Reverts #NNNN" / "This reverts commit …" even though its title doesn't say so.
+3. **Closed-unmerged PRs** — a PR listed in the changelog whose fetched state is closed-but-not-merged never shipped.
+4. **Backreference from a later PR** — the feature PR itself looks perfectly shipped; only a *different, later* PR undoes it. Reading the feature PR alone can never catch this — you must look for who points back at it.
+
+For each, remove **both** the revert **and** the original PR it targets (and drop closed-unmerged PRs outright). That feature did not ship. When a revert points at a PR that isn't in this release's changelog, note it in the drop list so the user can confirm — the target may have been announced in an earlier release and now needs a correction.
+
+**Detect method 4 explicitly.** Do not trust the feature PR to advertise its own reversal. For every surviving feature PR `#N`, search for PRs that revert it:
+
+```
+gh search prs --repo <owner>/<name> "Reverts #N" --json number,title,state
+```
+
+(or scan every fetched PR body in the release for a `#N` backreference). If a merged PR reverts `#N`, drop `#N`.
+
+#### Worked example — the "clean feature" trap (okya-web #2605)
+
+`#2605 [feature] Allow calculator-driven price override on CreateOrderLineItem promotion` is the exact case where per-PR reading fails:
+
+- Merged, detailed body, integration specs, **and a real UI change** (`backend/promotion_actions/_form.html.erb`) — every signal says "announce this: buy X, get Y at fixed price Z".
+- Three weeks later, `#2818 [chore] Revert #2605: …` (merged) undoes all 5 files (**+36 / −256**, the mirror of #2605's +256 / −36).
+- Both shipped in the **same** release (`#2820 Release - 1.41.0`) → net-zero. Announce nothing.
+
+Here #2818's title named the target, so title-scanning happened to work. Had it been titled `[chore] Restore CreateOrderLineItem to pre-calculator behavior`, only the **body** (`Reverts #2605`) or the **`gh search prs "Reverts #2605"`** backreference would have caught it. Always run the backreference search; never rely on the revert being clearly titled.
 
 ### Part-N / incompleteness
 
