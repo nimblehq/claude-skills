@@ -41,8 +41,8 @@ INITIATIVE: Platform Compliance
     │   └── Spec: Customer Visibility
     │
     └── Issues (created from specs)
-        ├── As an admin, I can create a new consent so that...
-        ├── As an admin, I can publish a consent version so that...
+        ├── As an admin, I can create a new consent
+        ├── As an admin, I can publish a consent version
         └── ...
 ```
 
@@ -104,12 +104,12 @@ Find relevant:
 
 **Title is the full user story:**
 ```
-As a [role], I can [action] so that [benefit]
+As a [role], [when], I can [action] [what]
 ```
 
 **Critical rules:**
 - User must always be human (customer, admin, staff), never a system
-- Include "so that" clause with the benefit
+- Benefit and reasons go in `## Why`, never in the title; an optional `[when]` trigger may precede the action
 - No short summaries as titles
 
 **Anti-pattern:**
