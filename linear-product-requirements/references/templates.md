@@ -173,7 +173,7 @@ As a [Who], [When], I [can/must] [action verb] [What] so that [Why]
 
 ## Resources
 
-(Optional) [API docs, references]
+(Optional) [Only if the story needs an API: the Postman request name(s) (method + name, e.g. `GET Consents List`) with a link to the team's Postman collection, not raw `/api/v1/...` endpoints. Figma goes in `## Design` above.]
 ```
 
 > For complete user story guidance, refer to the Nimble user stories skill and documentation at https://nimblehq.co/compass/product/backlog-management/user-stories/

@@ -155,6 +155,12 @@ Frame as considerations, not requirements:
 | "Use double-entry accounting" | "Similar systems use double-entry patterns. Engineering to evaluate." |
 | "Add idempotency_key column" | "API must prevent duplicate transactions. Reference: Stripe idempotency." |
 
+### Referencing APIs in a story
+
+Only when a story actually needs a backend API, reference it in `## Resources` (never a separate section, never inline). Name the relevant **Postman request(s)** by their friendly name (method + request name, e.g. `GET Consents List`, `POST Consents Create`) and link the team's API collection in Postman. Do not list raw `/api/v1/...` paths or paste request/response JSON: the developer recognises the call by name and opens Postman for the contract, where a real captured request/response lives as a saved example. Confirm the request exists in the shared collection, capturing the saved example first if it does not, and that the collection is accessible to the team. Omit entirely when no API is involved.
+
+**Why:** Without ready resources in the story, understanding the API means crawling the whole codebase. An AI coding agent burns heavy context doing that, and a developer on a low-tier AI plan has little budget to spare. A named Postman request with a real saved example hands them the contract directly, so they can focus on implementing instead of discovering the API.
+
 ## Templates
 
 See `references/templates.md` for complete templates.
