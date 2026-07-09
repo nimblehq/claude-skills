@@ -375,6 +375,23 @@ git push
 
 ---
 
+### scrutinize-ux
+**Purpose:** Outsider-perspective, multi-lens UX review of a design (Figma frame, screen, flow, or mockup)
+
+**Covers:**
+- Derives the stakeholder lenses (staff, manager, HQ, customer, etc.) from the design itself, never a fixed roster
+- Walks the whole journey including the unhappy paths (errors, empty, offline, approval / recount loops)
+- Concept-before-copy findings: big mental-model issues first, copy and visual nits last
+- One-screen, severity-sorted output (Finding / Explanation / Suggestion / Where): read the Finding, drill into the rest only if needed
+
+**When to use:**
+- Reviewing, critiquing, auditing, or sanity-checking a design, screen, flow, Figma file, prototype, or UI mockup
+- Getting an outsider second opinion before a design ships
+
+**Note:** Reads Figma via the Figma MCP (`get_metadata` / `get_screenshot`). For code or PRs, use a code review skill instead.
+
+---
+
 *Additional skills will be listed here as they are added to the repository.*
 
 ## Support
